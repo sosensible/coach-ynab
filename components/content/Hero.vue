@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="w-full">
     <h1 class="text-4xl">
       <slot />
     </h1>
