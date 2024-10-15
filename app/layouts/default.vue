@@ -13,8 +13,9 @@ const mode = useColorMode({
 const siteMenu = [
   { name: 'Home', link: '/', mobile: true },
   {
-    name: 'About', link: '/about', mobile: true,
+    name: 'About', link: '/aboutus', mobile: true,
     submenu: [
+      { name: 'Us', link: '/us', mobile: true },
       { name: 'Location', link: '/location', mobile: true },
       { name: 'Staff', link: '/staff', mobile: true },
       { name: 'Beliefs', link: '/beliefs', mobile: true }
@@ -48,7 +49,7 @@ watchEffect(() => mode.value = state.value)
               <a>About</a>
               <ul class="p-2">
                 <li>
-                  <NuxtLink to="/about">Location</NuxtLink>
+                  <NuxtLink to="/aboutus">Location</NuxtLink>
                 </li>
                 <li>
                   <NuxtLink>Staff</NuxtLink>
@@ -72,13 +73,16 @@ watchEffect(() => mode.value = state.value)
               <summary>About</summary>
               <ul class="p-2">
                 <li>
-                  <NuxtLink to="/about">Location</NuxtLink>
+                  <NuxtLink to="/aboutus">Us</NuxtLink>
                 </li>
                 <li>
-                  <NuxtLink>Staff</NuxtLink>
+                  <NuxtLink to="/location">Location</NuxtLink>
                 </li>
                 <li>
-                  <NuxtLink>Beliefs</NuxtLink>
+                  <NuxtLink to="/staff">Staff</NuxtLink>
+                </li>
+                <li>
+                  <NuxtLink to="/beliefs">Beliefs</NuxtLink>
                 </li>
               </ul>
             </details>
@@ -147,10 +151,9 @@ watchEffect(() => mode.value = state.value)
     <div id="footer" class="xfixed xbottom-0 w-full">
       <footer class="footer bg-base-200 text-base-content p-10">
         <nav class="grid grid-flow-col gap-4">
-          <a class="link link-hover">About us</a>
-          <a class="link link-hover">Contact</a>
-          <a class="link link-hover">Jobs</a>
-          <a class="link link-hover">Press kit</a>
+          <NuxtLink to="/aboutus" class="link link-hover">About Us</NuxtLink>
+          <NuxtLink to="/" class="link link-hover">Contact</NuxtLink>
+          <NuxtLink to="/news" class="link link-hover">News</NuxtLink>
         </nav>
       </footer>
       <footer class="footer bg-base-200 text-base-content border-base-300 border-t px-10 py-4">

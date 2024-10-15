@@ -13,12 +13,14 @@
             description here Short description here.
           </p>
           <div class="flex justify-center">
-            <a href="#"
-              class="inline-flex text-white bg-emerald-600 border-0 py-2 px-6 focus:outline-none hover:bg-emerald-600 rounded text-lg">Directions
-            </a>
-            <a href="#"
-              class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">Read
-              articles</a>
+            <NuxtLink to="/location"
+              class="inline-flex text-white bg-emerald-600 border-0 py-2 px-6 focus:outline-none hover:bg-emerald-600 rounded text-lg">
+              Directions
+            </NuxtLink>
+            <NuxtLink to="/news"
+              class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">
+              Read
+              articles</NuxtLink>
           </div>
         </div>
         <div class="lg:max-w-lg lg:w-full mb-5 md:mb-0 md:w-1/2 w-3/6">

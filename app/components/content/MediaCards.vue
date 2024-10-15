@@ -1,7 +1,4 @@
 <script lang="ts" setup>
-import { defineProps } from 'vue';
-import { Title } from '../../.nuxt/components';
-
 const props = defineProps<{
   media: Array<{
     id: number;

@@ -1,11 +1,9 @@
 ---
-title: 'Lifegate Baptist Church'
+title: 'Lifegate Staff'
 description: 'Friendly biblical fellowship in western Michigan.'
 ---
 
-Friendly biblical fellowship in western Michigan.
-
-Try to navigate to [/about](/about).
+Staff at Lifegate Baptist Church.
 
 ---
 
