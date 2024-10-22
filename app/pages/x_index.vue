@@ -1,98 +1,3 @@
-<script lang="ts" setup>
-import * as ynab from 'ynab';
-import config from '~~/config.json';
-import { ClientOnly } from '../../.nuxt/components';
-
-// ynab.clientId = config.clientId;
-// ynab.redirectUri = config.redirectUri;
-// ynab.token = null;
-// ynab.api = null;
-
-console.log(ynab);
-
-const loading = ref(false);
-const error = ref(null);
-const budgetId = ref(null);
-const budgets = ref([]);
-const transactions = ref([]);
-
-if (process.ClientOnly) {
-
-  const getBudgets = () => {
-    loading.value = true;
-    error.value = null;
-    ynab.api.budgets.getBudgets().then((res) => {
-      budgets.value = res.data.budgets;
-    }).catch((err) => {
-      error.value = err.error.detail;
-    }).finally(() => {
-      loading.value = false;
-    });
-  };
-
-  const selectBudget = (id) => {
-    loading.value = true;
-    error.value = null;
-    budgetId.value = id;
-    transactions.value = [];
-    ynab.api.transactions.getTransactions(id).then((res) => {
-      transactions.value = res.data.transactions;
-    }).catch((err) => {
-      error.value = err.error.detail;
-    }).finally(() => {
-      loading.value = false;
-    });
-  };
-
-  const authorizeWithYNAB = (e) => {
-    e.preventDefault();
-    const uri = `https://app.ynab.com/oauth/authorize?client_id=${ynab.clientId}&redirect_uri=${ynab.redirectUri}&response_type=token`;
-    alert(uri);
-    window.location.replace(uri);
-  };
-
-  const findYNABToken = () => {
-    let token = null;
-    console.log(process.client);
-
-    const search = window.location.hash.substring(1).replace(/&/g, '","').replace(/=/g, '":"');
-    if (search && search !== '') {
-      const params = JSON.parse('{"' + search + '"}', function (key, value) {
-        return key === '' ? value : decodeURIComponent(value);
-      });
-      token = params.access_token;
-      sessionStorage.setItem('ynab_access_token', token);
-      window.location.hash = '';
-    } else {
-      token = sessionStorage.getItem('ynab_access_token');
-    }
-    return token;
-  };
-
-  const resetToken = () => {
-    sessionStorage.removeItem('ynab_access_token');
-    ynab.token = null;
-    error.value = null;
-  };
-
-  ynab.token = findYNABToken();
-  if (ynab.token) {
-    ynab.api = new ynabapi.api(ynab.token);
-    if (!budgetId) {
-      getBudgets();
-    } else {
-      selectBudget(budgetId);
-    }
-  }
-
-} else {
-  console.log('ServerOnly');
-}
-
-// console.log(ynab.value);
-
-</script>
-
 <template>
   <div class="container">
 
@@ -151,5 +56,9 @@ if (process.ClientOnly) {
     <Footer />
   </div>
 </template>
+
+<script lang="ts" setup>
+
+</script>
 
 <style></style>
